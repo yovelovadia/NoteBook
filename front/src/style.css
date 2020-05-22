@@ -1,0 +1,282 @@
+body {
+  padding: 0;
+  margin: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  font-family: monospace;
+}
+
+.background_images {
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
+}
+.home {
+  background-image: url("./images/home_background.jpg");
+}
+
+.sign_up_login {
+  background-image: url("./images/signUp_backround.jpg");
+}
+
+.schedule {
+}
+
+.intro {
+  position: absolute;
+  bottom: 40vh;
+  left: 16vw;
+  text-align: center;
+}
+
+.intro h1 {
+  font-weight: 1200;
+  letter-spacing: 8px;
+  font-size: 90px;
+  font-family: monospace;
+  width: fit-content;
+  background: linear-gradient(to right, #f8e0e0, #ffffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.logo {
+  position: absolute;
+  font-weight: 1200;
+  letter-spacing: 8px;
+  font-size: 37px;
+  font-family: monospace;
+  width: fit-content;
+  background: linear-gradient(to right, #f8e0e0, #ffffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 10px;
+}
+
+.sign_up_button {
+  cursor: pointer;
+  padding: 10px;
+  background-color: rgb(245, 107, 107);
+  border: aliceblue solid 1px;
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+}
+
+.sign_up_button:hover {
+  background-color: rgba(240, 112, 112, 0.568);
+}
+
+.login_button {
+  margin: 10px;
+  cursor: pointer;
+  padding: 10px;
+  background-color: transparent;
+  border: aliceblue solid 1px;
+  color: aliceblue;
+  text-decoration: none;
+}
+
+.login_button:hover {
+  background-color: rgba(34, 34, 34, 0.103);
+}
+
+.burger {
+  position: absolute;
+  border: 1px solid rgb(0, 0, 0);
+  right: 0;
+  margin: 10px;
+}
+
+.burger button {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.burger div {
+  width: 33px;
+  height: 5px;
+  background-color: rgb(0, 0, 0);
+  margin: 5px;
+}
+
+.burger:hover {
+  border: 1px solid rgb(248, 248, 248);
+}
+
+.links {
+  position: absolute;
+  flex-direction: column;
+  list-style: none;
+  right: 10vw;
+}
+
+.links_href {
+  text-decoration: none;
+}
+
+@keyframes moving_links {
+  from {
+    transform: translateX(150%);
+    visibility: hidden;
+  }
+  to {
+    transform: translateX(0%);
+    visibility: visible;
+  }
+}
+@keyframes back_links {
+  from {
+    transform: translateX(0%);
+    opacity: 1;
+    visibility: hidden;
+  }
+  to {
+    transform: translateX(150%);
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.links li {
+  margin: 10vh;
+  font-size: 3vw;
+  visibility: hidden;
+}
+
+.nav {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-left: 20vw solid transparent;
+  border-right: 0 solid transparent;
+  border-top: 100vh solid;
+  width: 20vw;
+  transform: translateX(100%);
+  transition: transform 0.1s ease-in;
+}
+
+.nav-active {
+  transform: translateX(0%);
+}
+
+.weather_display {
+  position: absolute;
+  color: aliceblue;
+  background-color: rgba(255, 182, 182, 0.2);
+  border-radius: 7px;
+  margin: 5px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.weather_display div {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  width: 100%;
+  text-align: center;
+}
+
+.weather_top_area {
+  display: flex;
+}
+.weather_top_area img {
+  width: 70%;
+  opacity: 0.4;
+  padding: 10px;
+}
+
+.weather_bottom_area {
+  display: flex;
+  text-align: center;
+}
+
+.weather_tempature {
+  margin: auto;
+  font-size: 47px;
+}
+
+.signUp_form {
+  position: absolute;
+  color: rgb(0, 0, 0);
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  background-color: aliceblue;
+  height: 60%;
+  width: 30%;
+  border: rgb(54, 54, 54) 4px solid;
+  margin: 10%;
+  box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.664);
+}
+
+.signUp_form h1 {
+  background-color: #2b2b2b;
+  color: rgba(240, 248, 255, 0.671);
+  margin: 0;
+  padding: 5%;
+}
+
+.signUp_form input[type="submit"] {
+  background-color: rgba(32, 178, 171, 0.815);
+  border: 1px solid black;
+  color: aliceblue;
+  width: fit-content;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+
+.signUp_form input[type="submit"]:hover {
+  background-color: rgba(0, 122, 116, 0.815);
+}
+
+.signUp_login_inputs {
+  border: none;
+  border-bottom: 1px solid rgba(75, 75, 75, 0.616);
+  margin-top: 10%;
+  font-size: 30px;
+  outline: none;
+  margin-left: 5%;
+  background-color: transparent;
+  width: 80%;
+}
+
+.signUp_inputs::placeholder {
+  opacity: 0.4;
+}
+
+.calendar {
+  background-color: white;
+  width: 85vw;
+  height: 85vh;
+}
+
+@media screen and (max-width: 768px) {
+  .intro {
+    position: absolute;
+    bottom: 5vh;
+    left: 5vw;
+    text-align: center;
+  }
+  .intro h1 {
+    font-size: 30px;
+  }
+
+  .links li {
+    font-size: 30px;
+  }
+  .nav {
+    width: 35vw;
+  }
+
+  .signUp_form {
+    bottom: 0%;
+    width: 45%;
+    margin: 5%;
+  }
+}
