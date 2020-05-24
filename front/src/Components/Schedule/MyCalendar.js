@@ -4,10 +4,12 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import axios from "axios";
-
+import { useSelector } from "react-redux";
 import "./main.scss";
 
 function MyCalendar() {
+  const Logged = useSelector((state) => state.Logged.whoLogged);
+  console.log(Logged);
   const calendarComponentRef = React.createRef();
   const [events, setEvent] = useState([
     { title: "test nigger", start: new Date(), end: "2020-05-28" },
@@ -27,11 +29,6 @@ function MyCalendar() {
         .post("http://localhost:5000/schedule/add", data)
         .then((res) => console.log(res))
         .catch((e) => console.log(e));
-
-      // setEvent([
-      //   ...events,
-      //   { title: eventName, start: info.date, allDay: info.allDay },
-      // ]);
     }
   };
 
@@ -75,6 +72,13 @@ function MyCalendar() {
           />
         </div>
       </div>
+      {!Logged ? (
+        <h1>
+          <a className={"loginError"} href={"/log-in"}>
+            Must login for changes to take effect
+          </a>
+        </h1>
+      ) : null}
     </div>
   );
 }

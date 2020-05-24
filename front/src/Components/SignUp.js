@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import Navbar from "./Navbar";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 function SignUp() {
   const [name, setName] = useState(null);
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
-  const [created, setCreated] = useState(false);
-  const [existAccount, setExistAccount] = useState(false);
+  const [response, setResponse] = useState(null);
+  const history = useHistory();
 
   function handleChange(id) {
     const element = document.getElementById(id);
@@ -20,15 +21,18 @@ function SignUp() {
     }
   }
 
-  function storeData(event) {
-    setExistAccount(false);
+  async function storeData(event) {
     event.preventDefault();
-    const user = { name: name, email: email, password: password };
-    axios
-      .post("http://localhost:5000/users/add", user)
-      .then((res) => console.log(res.data))
-      .then(() => setCreated(true))
-      .catch((e) => setExistAccount(true));
+    const user = { name, email, password };
+    try {
+      const res = await axios.post("http://localhost:5000/users/add", user);
+      const created = await setResponse("User Created");
+      setTimeout(() => {
+        history.push("/log-in");
+      }, 1500);
+    } catch (error) {
+      setResponse(error.response.data);
+    }
 
     return false;
   }
@@ -49,9 +53,8 @@ function SignUp() {
           placeholder={"Name"}
           id={"register_fname"}
           autoComplete={"off"}
-          pattern={"[A-Za-z ]{2,}"}
           required
-          title={"Must contain letters only"}
+          title={"Must contain letters only and min 2 characters"}
           spellCheck={"false"}
           maxLength={16}
         ></input>
@@ -59,7 +62,7 @@ function SignUp() {
         <input
           onChange={() => handleChange("register_email")}
           className={"signUp_login_inputs"}
-          type={"email"}
+          type={"text"}
           name={"mail"}
           placeholder={"Email"}
           id={"register_email"}
@@ -76,7 +79,6 @@ function SignUp() {
           name={"password"}
           placeholder={"Password"}
           id={"register_password"}
-          pattern={"[A-Za-z0-9]{8,}"}
           autoComplete={"off"}
           title={"Password must be atleast 8 characters long"}
           required
@@ -89,11 +91,7 @@ function SignUp() {
           type={"submit"}
           value={"Register"}
         ></input>
-        {existAccount ? (
-          <h2 style={{ marginLeft: "5%" }}>Account exists</h2>
-        ) : created ? (
-          <h2 style={{ marginLeft: "5%" }}>User created!</h2>
-        ) : null}
+        <h5 style={{ marginLeft: "5%" }}>{response}</h5>
       </form>
     </div>
   );

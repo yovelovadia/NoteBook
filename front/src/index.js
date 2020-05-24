@@ -3,16 +3,32 @@ import ReactDOM from "react-dom";
 import "./style.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-// import "./Components/Schedule/main.scss";
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+import Store from "./Reducer/Store";
+import useAuthToken from "./useAuthToken";
+import jwt from "jsonwebtoken";
+
+const store = createStore(
+  Store,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
+
+if (localStorage.jwtAuthToken) {
+  useAuthToken(localStorage.jwtAuthToken);
+  store.dispatch({
+    type: "Logged",
+    value: jwt.decode(localStorage.jwtAuthToken)._id,
+  });
+}
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={store}>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </Provider>,
   document.getElementById("root")
 );
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();

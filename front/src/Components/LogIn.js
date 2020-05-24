@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import Navbar from "./Navbar";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
+import setAuthToken from "../useAuthToken";
+const jwt = require("jsonwebtoken");
 
 function LogIn() {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
-  const [wrongPass, setWrongPass] = useState(false);
-  const [existEmail, setExistEmail] = useState(false);
+  const [response, setResponse] = useState(null);
+  const history = useHistory();
 
   function handleChange(id) {
     const element = document.getElementById(id);
@@ -17,24 +20,22 @@ function LogIn() {
     }
   }
 
-  function checkDataGiven(data) {
-    setExistEmail(false);
-    if (data.data.length === 0) {
-      setExistEmail(true);
-    } else if (data.data[0].password === password) {
-      console.log("Logged in");
-    } else {
-      setWrongPass(true);
-    }
-  }
-
-  function validate(event) {
+  async function validate(event) {
     event.preventDefault();
-    axios
-      .get("http://localhost:5000/users/validation", {
-        params: { email: email },
-      })
-      .then((data) => checkDataGiven(data));
+    try {
+      const data = await axios.get("http://localhost:5000/users/validation", {
+        params: { email, password },
+      });
+      setResponse("logged in");
+      const token = data.data.token;
+      localStorage.setItem("jwtAuthToken", token);
+      setAuthToken(token);
+      setTimeout(() => {
+        history.push("/home");
+      }, 1500);
+    } catch (error) {
+      setResponse(error.response.data);
+    }
   }
   return (
     <div className={"background_images sign_up_login"}>
@@ -52,7 +53,7 @@ function LogIn() {
         <input
           onChange={() => handleChange("login_email")}
           className={"signUp_login_inputs"}
-          type={"email"}
+          type={"text"}
           name={"mail"}
           placeholder={"Email"}
           id={"login_email"}
@@ -68,7 +69,6 @@ function LogIn() {
           name={"password"}
           placeholder={"Password"}
           id={"login_password"}
-          pattern={"[A-Za-z0-9]{8,}"}
           autoComplete={"off"}
           title={"Password must be atleast 8 characters long"}
           required
@@ -81,11 +81,7 @@ function LogIn() {
           type={"submit"}
           value={"Login"}
         ></input>
-        {existEmail ? (
-          <h2 style={{ marginLeft: "5%" }}>Invalid email</h2>
-        ) : wrongPass ? (
-          <h2 style={{ marginLeft: "5%" }}>Invalid password</h2>
-        ) : null}
+        <h5 style={{ marginLeft: "5%" }}>{response}</h5>
       </form>
     </div>
   );
