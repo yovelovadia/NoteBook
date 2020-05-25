@@ -3,7 +3,9 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./Components/Home";
 import SignUp from "./Components/SignUp";
 import LogIn from "./Components/LogIn";
-import MyCalendar from "./Components/Schedule/MyCalendar";
+import MyCalendar from "./Components/Schedule/MyCalendar"
+import Notes from "./Components/Notes/Notes"
+
 
 function App() {
   return (
@@ -14,6 +16,7 @@ function App() {
           <Route path="/sign-up" component={SignUp} />
           <Route path="/Log-in" component={LogIn} />
           <Route path="/schedule" component={MyCalendar} />
+          <Route path="/notes" component={Notes}/>
 
           <Home />
         </Switch>

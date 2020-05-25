@@ -3,20 +3,20 @@ import React from "react";
 function Navbar(props) {
   function nav_active() {
     const nav = document.querySelector(".nav");
-    const links = document.querySelectorAll(".links li");
+    const listLinks = document.querySelectorAll(".links li");
     const burger = document.querySelectorAll(".burger div");
     burger.forEach((div) => {
       div.classList.toggle(".burger-active");
     });
     nav.classList.toggle("nav-active");
     if (nav.className === "nav nav-active") {
-      links.forEach((link, index) => {
+      listLinks.forEach((link, index) => {
         link.style.animation = `moving_links 0.5 ease forwards ${
           (index + 0.1) * 0.5
         }s `;
       });
     } else {
-      links.forEach((link) => {
+      listLinks.forEach((link) => {
         link.style.animation = "back_links 0.5 ease forwards";
       });
     }
@@ -35,17 +35,17 @@ function Navbar(props) {
               Schedule
             </a>
           </li>
-          <li style={{ paddingLeft: "4vw" }}>
+          <li style={{left:"4vw" }}>
             {" "}
             <a
               style={{ color: props.font_color }}
               className={"links_href"}
-              href={"/schedule"}
+              href={"/notes"}
             >
-              Schedule
+              Notes
             </a>
           </li>
-          <li style={{ paddingLeft: "8vw" }}>
+          <li style={{ left: "8vw" }}>
             {" "}
             <a
               style={{ color: props.font_color }}

@@ -26,6 +26,10 @@ body {
 .schedule {
 }
 
+.notes{
+  background-image: url("./images/notes_background.jpg");
+}
+
 .intro {
   position: absolute;
   bottom: 40vh;
@@ -115,9 +119,12 @@ body {
   flex-direction: column;
   list-style: none;
   right: 10vw;
+  visibility: hidden;
 }
 
+
 .links_href {
+  position: relative;
   text-decoration: none;
 }
 
@@ -198,7 +205,8 @@ body {
 
 .weather_tempature {
   margin: auto;
-  font-size: 47px;
+  font-size: 35px;
+  padding: 10px;
 }
 
 .signUp_form {
@@ -256,6 +264,34 @@ body {
   height: 85vh;
 }
 
+.noteComp{
+  float: left;
+  margin: 5px;
+  width: 200px;
+  height: 200px;
+  background-color: rgba(240, 248, 255, 0.842);
+  border-radius: 10% 10% 10% 10%;
+}
+
+.notesInput{
+  margin: 5%;
+  font-size: 14px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-weight: bold;
+  font-family: sans-serif;
+  resize: none;
+  background-color: tomato;
+}
+
+.notesInput::-webkit-scrollbar{
+  display: none;
+}
+.notesInput::-webkit-scrollbar {
+  -ms-overflow-style: none;
+}
+
 @media screen and (max-width: 768px) {
   .intro {
     position: absolute;
@@ -279,4 +315,13 @@ body {
     width: 45%;
     margin: 5%;
   }
+  .weather_display{
+    width: 155px;
+    height: 180px;
+    
+  }
 }
+
+
+
+
