@@ -35,30 +35,27 @@ function Navbar(props) {
               Schedule
             </a>
           </li>
-          <li style={{left:"4vw" }}>
-            {" "}
+          <li>
             <a
-              style={{ color: props.font_color }}
+              style={{ color: props.font_color, left: "3vw" }}
               className={"links_href"}
               href={"/notes"}
             >
               Notes
             </a>
           </li>
-          <li style={{ left: "8vw" }}>
-            {" "}
+          <li>
             <a
-              style={{ color: props.font_color }}
+              style={{ color: props.font_color, left: "6vw" }}
               className={"links_href"}
               href={"/schedule"}
             >
               Schedule
             </a>
           </li>
-          <li style={{ paddingLeft: "12vw" }}>
-            {" "}
+          <li>
             <a
-              style={{ color: props.font_color }}
+              style={{ color: props.font_color, left: "9vw" }}
               className={"links_href"}
               href={"/schedule"}
             >

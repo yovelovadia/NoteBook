@@ -1,11 +1,10 @@
 import axios from "axios";
 
 function useAuthToken(token) {
-  // const dispatch = useDispatch();
   if (!token) {
-    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    axios.defaults.headers["authorization"] = `Bearer ${token}`;
   } else {
-    delete axios.defaults.headers.common["Authorization"];
+    delete axios.defaults.headers["authorization"];
   }
 }
 

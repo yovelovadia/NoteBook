@@ -27,9 +27,10 @@ function LogIn() {
         params: { email, password },
       });
       setResponse("logged in");
+      console.log(data.data.token);
       const token = data.data.token;
       localStorage.setItem("jwtAuthToken", token);
-      setAuthToken(token);
+      // setAuthToken(token);
       setTimeout(() => {
         history.push("/home");
       }, 1500);

@@ -69,9 +69,14 @@ router.route("/validation").get(async (req, res) => {
 
   const getUser = await user.findOne({ email }); //login in and sending token
   if (getUser.password === password) {
-    jwt.sign({ _id: getUser._id }, process.env.JWT_SECRET, (err, token) => {
-      res.json({ token });
-    });
+    jwt.sign(
+      { _id: getUser._id },
+      process.env.JWT_SECRET,
+      { expiresIn: "20m" },
+      (err, token) => {
+        res.json({ token });
+      }
+    );
   } else {
     res.status(401).json("Wrong password or email");
   }

@@ -4,6 +4,8 @@ const cors = require("cors");
 
 require("dotenv").config();
 
+mongoose.set("useFindAndModify", false);
+
 const app = express(); //set up
 const port = process.env.PORT || 5000; //working port
 

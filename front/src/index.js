@@ -14,13 +14,13 @@ const store = createStore(
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
-if (localStorage.jwtAuthToken) {
-  useAuthToken(localStorage.jwtAuthToken);
-  store.dispatch({
-    type: "Logged",
-    value: jwt.decode(localStorage.jwtAuthToken)._id,
-  });
-}
+// if (localStorage.jwtAuthToken) {
+//   useAuthToken(localStorage.jwtAuthToken);
+//   store.dispatch({
+//     type: "Logged",
+//     value: jwt.decode(localStorage.jwtAuthToken)._id,
+//   });
+// }
 
 ReactDOM.render(
   <Provider store={store}>
