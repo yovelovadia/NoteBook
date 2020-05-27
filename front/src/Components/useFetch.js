@@ -8,15 +8,12 @@ const useFetch = (url) => {
     const takeData = async () => {
       setIsLoading(true);
       try {
-        console.log(url, "blaaaa");
         const res = await fetch(url);
         const json = await res.json();
         setResponse(json);
         setIsLoading(false);
       } catch (error) {
         setError(error);
-        console.log(url);
-        console.log(response);
       }
     };
     takeData();

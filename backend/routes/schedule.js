@@ -44,30 +44,45 @@ router.route("/change-resize").put((req, res) => {
 });
 
 router.route("/add").post(verifyToken, (req, res) => {
-  const userId = req.body._id;
-  const date = req.body.events;
-  const token = req.body.token;
-  res.header("Authorization", "Bearer " + token);
-
-  jwt.verify(token, process.env.JWT_SECRET, (err, AuthData) => {
+  const userId = req.body.params._id;
+  const date = req.body.params.events;
+  const token = req.body.params.token.split(" ")[1];
+  jwt.verify(token, process.env.JWT_SECRET, (err, Auth) => {
     if (err) {
+      console.log(token);
       res.sendStatus(403);
     } else {
       const newSchedule = new schedule({
         userId,
         date,
       });
-      console.log("biatchhhhh");
+
       newSchedule
         .save()
-        .then(() => {
-          res.json("new Event");
-        })
-        .catch((e) => {
-          res.status(400).json("error: " + e);
-        });
+        .then(() => res.json("New event!"))
+        .catch((err) => res.sendStatus(400));
     }
   });
 });
+
+// router.route("/add").post( (req, res) => {
+//   const userId = req.body._id;
+//   const date = req.body.events;
+
+//       const newSchedule = new schedule({
+//         userId,
+//         date,
+//       });
+//       newSchedule
+//         .save()
+//         .then(() => {
+//           res.json("new Event");
+//         })
+//         .catch((e) => {
+//           res.status(400).json("error: " + e);
+
+//     }
+//   });
+// });
 
 module.exports = router;

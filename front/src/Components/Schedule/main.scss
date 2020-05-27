@@ -10,6 +10,13 @@
   font-size: 17px;
 }
 
+.fc-list-empty {
+  // height: vh !important;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+}
+
 .demo-app-calendar {
   margin: 0 auto;
   max-width: 70vw;
@@ -30,6 +37,10 @@
   background-color: rgba(255, 255, 255, 0.507);
 }
 
+.fc-day-grid-container {
+  height: fit-content !important;
+}
+
 .fc-center {
   color: white;
 }
@@ -41,4 +52,48 @@
 .fc-button {
   background-color: rgb(255, 255, 255);
   color: black;
+}
+
+@media screen and (max-width: 768px) {
+  .fc-day-grid-container {
+    height: 74vh !important;
+  }
+  .demo-app-calendar {
+    max-width: 90vw;
+  }
+
+  .fc-center {
+    color: white;
+    font-size: 5px;
+  }
+
+  .fc-toolbar {
+    font-size: 10px;
+  }
+
+  .fc-time-grid-container {
+    height: 60vh !important;
+  }
+  .loginError {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 768px) and (orientation: landscape) {
+  .loginError {
+    font-size: 20px;
+  }
+
+  .fc-center {
+    font-size: 10px;
+  }
+
+  .fc-toolbar {
+    font-size: 15px;
+  }
+  .loginError {
+    position: absolute;
+    font-size: 20px;
+    right: 0;
+  }
 }

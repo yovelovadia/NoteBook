@@ -43,7 +43,6 @@ function MyCalendar() {
   const handleDateClick = (info) => {
     //creating new date
     const eventName = window.prompt("event name", "");
-    console.log(localStorage.jwtAuthToken + " myCalendar");
     if (eventName) {
       const data = {
         token: `bearer ${localStorage.jwtAuthToken}`,
@@ -56,9 +55,9 @@ function MyCalendar() {
         },
       };
       axios
-        .post("http://localhost:5000/schedule/add", data)
+        .post("http://localhost:5000/schedule/add", { params: data })
         .then((res) => setRefresh(refresh + 1))
-        .catch((e) => console.log(e));
+        .catch((e) => console.log(e.response));
     }
   };
 
@@ -89,7 +88,6 @@ function MyCalendar() {
         allDay: info.event.allDay,
       },
     };
-    console.log(info);
     axios
       .put("http://localhost:5000/schedule/change-resize", data)
       .catch((e) => console.log(e));
@@ -111,7 +109,8 @@ function MyCalendar() {
         <div className="demo-app-calendar">
           <FullCalendar
             defaultView="dayGridMonth"
-            contentHeight={650}
+            contentHeight={700}
+            handleWindowResize={true}
             nowIndicator={true}
             selectMinDistance={2}
             editable={true}
@@ -151,6 +150,9 @@ function MyCalendar() {
           </a>
         </h1>
       ) : null}
+      <div style={{ bottom: "0" }} className={"logo"}>
+        <a href={"/home"}>NoteBook</a>
+      </div>
     </div>
   );
 }

@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import Navbar from "./Navbar";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
-import setAuthToken from "../useAuthToken";
+import { createBrowserHistory } from "history";
+import setAuthToken from "../checkJwtExp";
 const jwt = require("jsonwebtoken");
 
 function LogIn() {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [response, setResponse] = useState(null);
-  const history = useHistory();
+  const history = createBrowserHistory({ forceRefresh: true });
 
   function handleChange(id) {
     const element = document.getElementById(id);
@@ -27,7 +27,6 @@ function LogIn() {
         params: { email, password },
       });
       setResponse("logged in");
-      console.log(data.data.token);
       const token = data.data.token;
       localStorage.setItem("jwtAuthToken", token);
       // setAuthToken(token);
@@ -66,7 +65,7 @@ function LogIn() {
         <input
           onChange={() => handleChange("login_password")}
           className={"signUp_login_inputs"}
-          type={"text"}
+          type={"password"}
           name={"password"}
           placeholder={"Password"}
           id={"login_password"}

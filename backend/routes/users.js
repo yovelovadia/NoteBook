@@ -1,15 +1,20 @@
-const router = require("express").Router();
+const app = require("express");
+const router = app.Router();
 const jwt = require("jsonwebtoken");
 const user = require("../models/users");
 const joi = require("@hapi/joi");
 const verify = require("./verifyToken");
 require("dotenv").config();
 
-router.route("/").get((req, res) => {
-  user
-    .find()
-    .then((users) => res.json(users))
-    .catch((e) => res.status(400).json("Error: " + e));
+router.route("/check-jwt-exp").get((req, res) => {
+  const token = req.query.token.split(" ")[1];
+  jwt.verify(token, process.env.JWT_SECRET, (err, Auth) => {
+    if (err) {
+      res.sendStatus(403);
+    } else {
+      res.json("logged");
+    }
+  });
 });
 
 const signUpSchema = joi.object({
@@ -72,7 +77,7 @@ router.route("/validation").get(async (req, res) => {
     jwt.sign(
       { _id: getUser._id },
       process.env.JWT_SECRET,
-      { expiresIn: "20m" },
+      { expiresIn: "24h" },
       (err, token) => {
         res.json({ token });
       }
@@ -82,14 +87,12 @@ router.route("/validation").get(async (req, res) => {
   }
 });
 
-//testtttt
-router.route("/test").get(verify, (req, res, next) => {
-  res.json(
-    {
-      message: "hey nigger",
-    },
-    req.user
-  );
+//getting a name only
+router.route("/:id").get((req, res) => {
+  user
+    .findById(req.params.id)
+    .then((data) => res.json(data.name))
+    .catch((err) => res.sendStatus(400));
 });
 
 // delete users
