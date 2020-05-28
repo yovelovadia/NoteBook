@@ -29,6 +29,9 @@ app.use("/users", users);
 const schedule = require("./routes/schedule");
 app.use("/schedule", schedule);
 
+const notes = require("./routes/notes");
+app.use("/notes", notes);
+
 ////////////////////////////////////////////////
 
 const connection = mongoose.connection; //check connection, once there is log it

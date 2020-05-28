@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import Navbar from "./Navbar";
 import axios from "axios";
 import { createBrowserHistory } from "history";
-import setAuthToken from "../checkJwtExp";
-const jwt = require("jsonwebtoken");
 
 function LogIn() {
   const [email, setEmail] = useState(null);
@@ -29,7 +27,6 @@ function LogIn() {
       setResponse("logged in");
       const token = data.data.token;
       localStorage.setItem("jwtAuthToken", token);
-      // setAuthToken(token);
       setTimeout(() => {
         history.push("/home");
       }, 1500);

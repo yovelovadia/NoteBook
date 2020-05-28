@@ -4,6 +4,7 @@ import GetLocation from "./GetLocation";
 function Weather() {
   const [getData, setData] = useState(null);
   const [date, setDate] = useState(null);
+  const [found, setFound] = useState(null);
 
   // generate new date
   useEffect(() => {
@@ -19,28 +20,34 @@ function Weather() {
   const promise = new Promise((resolve, reject) => {
     const [Lat, Lon] = GetLocation();
     if ((Lat !== null) & (Lon !== null)) {
+      if (!found) {
+        setFound("found");
+      }
       resolve([Lat, Lon]);
     } else {
       reject("failed");
     }
   });
   //after getting location fetch data from weather api
-  promise
-    .then(async (data) => {
-      try {
-        const res = await fetch(
-          `https://api.openweathermap.org/data/2.5/weather?lat=${data[0]}&lon=${data[1]}&appid=cc78ae511fefe366b76785c554992382`
-        );
-        const json = await res.json();
+  useEffect(() => {
+    async function getWeather() {
+      promise.then(async (data) => {
+        try {
+          const res = await fetch(
+            `https://api.openweathermap.org/data/2.5/weather?lat=${data[0]}&lon=${data[1]}&appid=cc78ae511fefe366b76785c554992382`
+          );
+          const json = await res.json();
 
-        if (getData === null) {
-          setData(json);
+          if (getData === null) {
+            setData(json);
+          }
+        } catch (err) {
+          console.log(err);
         }
-      } catch (e) {}
-    })
-    .catch((e) => {
-      console.log(e);
-    });
+      });
+    }
+    getWeather();
+  }, [found]);
 
   if (getData !== null) {
     return (
@@ -68,6 +75,3 @@ function Weather() {
   }
 }
 export default Weather;
-
-//api.openweathermap.org/data/2.5/weather?q=rishon lezion&appid=cc78ae511fefe366b76785c554992382
-//`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=cc78ae511fefe366b76785c554992382`

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
-import timeGridPlugin, { TimeGrid } from "@fullcalendar/timegrid";
+import timeGridPlugin from "@fullcalendar/timegrid";
 import listGridPlugin from "@fullcalendar/list";
 import interactionPlugin from "@fullcalendar/interaction";
 import axios from "axios";
@@ -30,6 +30,7 @@ function MyCalendar() {
           userId: date._id,
           id: date._id,
         });
+        return null;
       });
     }
 
@@ -38,7 +39,7 @@ function MyCalendar() {
         setEvent(empty_array);
       })
       .catch((error) => console.log(error));
-  }, [refresh]);
+  }, [refresh, Logged]);
 
   const handleDateClick = (info) => {
     //creating new date
@@ -114,13 +115,13 @@ function MyCalendar() {
             nowIndicator={true}
             selectMinDistance={2}
             editable={true}
-            eventLimit={3}
+            eventLimit={2}
             eventTimeFormat={{
               hour: "numeric",
               minute: "2-digit",
               meridiem: false,
             }}
-            eventBackgroundColor={"rgba(164, 208, 250, 0.966)"}
+            eventBackgroundColor={"rgba(179, 229, 245, 0.788)"}
             eventBorderColor={"black"}
             eventTextColor={"black"}
             header={{

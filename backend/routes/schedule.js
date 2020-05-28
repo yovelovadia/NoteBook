@@ -27,10 +27,10 @@ router.route("/:id").delete((req, res) => {
 router.route("/change-position").put((req, res) => {
   const _id = req.body.id;
   const date = req.body.events;
-  console.log(_id);
-  console.log(date);
+
   schedule
-    .findByIdAndUpdate({ _id }, { date })
+    .findOneAndUpdate({ _id }, { date })
+    .then(() => res.json("event updated!"))
     .catch((err) => res.status(400).json(err));
 });
 
@@ -38,8 +38,8 @@ router.route("/change-resize").put((req, res) => {
   const _id = req.body.id;
   const date = req.body.events;
   schedule
-    .findByIdAndUpdate({ _id }, { date })
-    .then(() => console.log(date, _id))
+    .findOneAndUpdate({ _id }, { date })
+    .then(() => res.json("event resized!"))
     .catch((err) => res.status(400).json(err));
 });
 
@@ -49,7 +49,6 @@ router.route("/add").post(verifyToken, (req, res) => {
   const token = req.body.params.token.split(" ")[1];
   jwt.verify(token, process.env.JWT_SECRET, (err, Auth) => {
     if (err) {
-      console.log(token);
       res.sendStatus(403);
     } else {
       const newSchedule = new schedule({
@@ -64,25 +63,5 @@ router.route("/add").post(verifyToken, (req, res) => {
     }
   });
 });
-
-// router.route("/add").post( (req, res) => {
-//   const userId = req.body._id;
-//   const date = req.body.events;
-
-//       const newSchedule = new schedule({
-//         userId,
-//         date,
-//       });
-//       newSchedule
-//         .save()
-//         .then(() => {
-//           res.json("new Event");
-//         })
-//         .catch((e) => {
-//           res.status(400).json("error: " + e);
-
-//     }
-//   });
-// });
 
 module.exports = router;

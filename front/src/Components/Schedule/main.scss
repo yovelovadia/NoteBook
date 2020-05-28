@@ -30,6 +30,22 @@
   color: white;
 }
 
+.fc-content,
+.fc-day-grid-event {
+  width: 95%;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.fc-title {
+  align-items: center;
+  justify-content: center;
+}
+.fc-time {
+  margin-right: 3px;
+}
+
 .fc-slats,
 .fc-row,
 .fc-widget-header,

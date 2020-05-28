@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 function GetLocation() {
   const [lat, setLat] = useState(null);
@@ -7,7 +7,6 @@ function GetLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition);
   } else {
-    console.log("Not supported");
     return;
   }
 

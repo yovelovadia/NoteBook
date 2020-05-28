@@ -3,7 +3,7 @@ const router = app.Router();
 const jwt = require("jsonwebtoken");
 const user = require("../models/users");
 const joi = require("@hapi/joi");
-const verify = require("./verifyToken");
+
 require("dotenv").config();
 
 router.route("/check-jwt-exp").get((req, res) => {
@@ -77,7 +77,7 @@ router.route("/validation").get(async (req, res) => {
     jwt.sign(
       { _id: getUser._id },
       process.env.JWT_SECRET,
-      { expiresIn: "24h" },
+      { expiresIn: "12h" },
       (err, token) => {
         res.json({ token });
       }

@@ -12,11 +12,11 @@ function Home() {
     async function fetchName() {
       if (id) {
         const data = await axios.get(`http://localhost:5000/users/${id}`);
-        const render = await setName(data.data);
+        await setName(data.data);
       }
     }
     fetchName();
-  }, []);
+  }, [id]);
 
   function logOut() {
     localStorage.removeItem("jwtAuthToken");
@@ -28,7 +28,7 @@ function Home() {
       <Navbar nav_color={"aliceblue"} font_color={"black"} />
       <Weather />
       <div className={"intro"}>
-        <h2>Welcome {name}</h2>
+        {name ? <h2>Welcome {name}</h2> : null}
 
         <h1>NoteBook</h1>
         {name ? (
