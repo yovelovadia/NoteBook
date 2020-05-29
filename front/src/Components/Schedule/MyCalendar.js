@@ -4,6 +4,7 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import listGridPlugin from "@fullcalendar/list";
 import interactionPlugin from "@fullcalendar/interaction";
+import Navbar from "../Navbar";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import "./main.scss";
@@ -106,11 +107,16 @@ function MyCalendar() {
 
   return (
     <div className={"schedule background_images"}>
+      <Navbar
+        nav_color={"#2b2b2b"}
+        font_color={"aliceblue"}
+        burger_color={"aliceblue"}
+      />
       <div className="demo-app">
         <div className="demo-app-calendar">
           <FullCalendar
             defaultView="dayGridMonth"
-            contentHeight={700}
+            aspectRatio={1.7}
             handleWindowResize={true}
             nowIndicator={true}
             selectMinDistance={2}

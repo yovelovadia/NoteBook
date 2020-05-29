@@ -30,15 +30,6 @@ function Navbar(props) {
             <a
               style={{ color: props.font_color }}
               className={"links_href"}
-              href={"/schedule"}
-            >
-              Schedule
-            </a>
-          </li>
-          <li>
-            <a
-              style={{ color: props.font_color, left: "3vw" }}
-              className={"links_href"}
               href={"/notes"}
             >
               Notes
@@ -46,7 +37,7 @@ function Navbar(props) {
           </li>
           <li>
             <a
-              style={{ color: props.font_color, left: "6vw" }}
+              style={{ color: props.font_color, left: "3vw" }}
               className={"links_href"}
               href={"/schedule"}
             >
@@ -55,20 +46,29 @@ function Navbar(props) {
           </li>
           <li>
             <a
+              style={{ color: props.font_color, left: "6vw" }}
+              className={"links_href"}
+              // href={"/schedule"}
+            >
+              inProgress
+            </a>
+          </li>
+          <li>
+            <a
               style={{ color: props.font_color, left: "9vw" }}
               className={"links_href"}
-              href={"/schedule"}
+              // href={"/schedule"}
             >
-              Schedule
+              inProgress
             </a>
           </li>
         </ul>
       </nav>
       <div onClick={nav_active} className={"burger"}>
         <button id={"burger_button"} />
-        <div></div>
-        <div></div>
-        <div></div>
+        <div style={{ backgroundColor: props.burger_color }}></div>
+        <div style={{ backgroundColor: props.burger_color }}></div>
+        <div style={{ backgroundColor: props.burger_color }}></div>
       </div>
     </React.Fragment>
   );

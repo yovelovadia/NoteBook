@@ -30,6 +30,14 @@ body {
 
 .notes {
   background-image: url("./images/notes_background.jpg");
+  background-position: bottom;
+  overflow-y: auto;
+}
+.notes::-webkit-scrollbar {
+  display: none;
+}
+.notes::-webkit-scrollbar {
+  -ms-overflow-style: none;
 }
 
 .intro {
@@ -124,6 +132,7 @@ body {
   border: 1px solid rgb(0, 0, 0);
   right: 0;
   margin: 10px;
+  z-index: 2;
 }
 
 .burger button {
@@ -151,6 +160,7 @@ body {
   list-style: none;
   right: 20vw;
   visibility: hidden;
+  z-index: 2;
 }
 
 .links_href {
@@ -197,6 +207,7 @@ body {
   width: 20vw;
   transform: translateX(100%);
   transition: transform 0.1s ease-in;
+  z-index: 2;
 }
 
 .nav-active {
@@ -260,6 +271,12 @@ body {
   padding: 5%;
 }
 
+.signUp_no_user {
+  position: relative;
+  top: 1%;
+  left: 5%;
+}
+
 .signUp_form input[type="submit"] {
   background-color: rgba(32, 178, 171, 0.815);
   border: 1px solid black;
@@ -294,17 +311,9 @@ body {
   height: 85vh;
 }
 
-.noteComp {
-  float: left;
-  margin: 5px;
-  width: 200px;
-  height: 200px;
-  background-color: rgba(240, 248, 255, 0.842);
-  border-radius: 10% 10% 10% 10%;
-}
-
 .notesInput {
-  margin: 5%;
+  position: relative;
+  margin: 5px;
   font-size: 14px;
   background-color: transparent;
   border: none;
@@ -312,6 +321,35 @@ body {
   font-weight: bold;
   font-family: sans-serif;
   resize: none;
+  background-color: rgba(240, 248, 255, 0.842);
+  float: left;
+  border-radius: 10%;
+  padding: 10px;
+  transition: 1s;
+  width: 150px;
+  height: 150px;
+  animation: 0.7s ease-in forwards notes_animation;
+}
+
+@keyframes notes_animation {
+  from {
+    opacity: 0;
+    left: 1500px;
+  }
+  to {
+    opacity: 1;
+    left: 0;
+  }
+}
+
+.notesInput:focus {
+  background-color: aliceblue;
+  width: 450px;
+  height: 450px;
+  padding: 25px;
+}
+.notesInput:focus + .note_garbage {
+  display: block;
 }
 
 .notesInput::-webkit-scrollbar {
@@ -320,6 +358,17 @@ body {
 .notesInput::-webkit-scrollbar {
   -ms-overflow-style: none;
 }
+/* .note_garbage {   experimenting
+  float: left;
+  margin: 5px;
+  width: 45px;
+  height: 45px;
+  font-size: 40px;
+  display: none;
+  border: none;
+  color: aliceblue;
+  background-color: transparent;
+} */
 
 .note_add_button {
   position: absolute;
@@ -337,10 +386,12 @@ body {
   vertical-align: middle;
   background-image: linear-gradient(90deg, #ffc16f 0%, #bd3030 100%);
   transition: 0.4s;
+  outline: none;
 }
 
 .note_add_button:hover {
   transform: rotate(90deg);
+  color: rgb(68, 68, 68);
 }
 
 @media screen and (max-width: 768px) {
@@ -372,5 +423,11 @@ body {
   }
   .intro h2 {
     font-size: 18px;
+  }
+
+  .notesInput:focus {
+    background-color: aliceblue;
+    width: 70vw;
+    height: 70vh;
   }
 }

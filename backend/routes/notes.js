@@ -16,6 +16,7 @@ router.route("/add-note").post(verifyToken, (req, res) => {
     } else {
       const newNote = new note({
         userId,
+        data: "",
       });
 
       newNote
@@ -24,6 +25,14 @@ router.route("/add-note").post(verifyToken, (req, res) => {
         .catch((err) => res.sendStatus(500));
     }
   });
+});
+
+// deleteing empty notes
+router.route("/delete-notes").delete((req, res) => {
+  note
+    .deleteMany({ data: "" })
+    .then(() => res.json("deleted unneccesery notes"))
+    .catch((err) => res.sendStatus(500));
 });
 
 //getting all notes for a specific user

@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 const notesSchema = new Schema({
   userId: {
     type: String,
+    required: true,
   },
   data: {
     type: String,

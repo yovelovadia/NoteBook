@@ -78,6 +78,9 @@ function LogIn() {
           type={"submit"}
           value={"Login"}
         ></input>
+        <div className={"signUp_no_user"}>
+          no user? <a href={"/sign-up"}>click here!</a>
+        </div>
         <h5 style={{ marginLeft: "5%" }}>{response}</h5>
       </form>
     </div>
