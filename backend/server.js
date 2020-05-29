@@ -36,13 +36,10 @@ app.use("/api/notes", notes);
 ////////////////////////////////////////////////
 //serve static assets if in production
 
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("front/build"));
-
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "front", "build", "index.html"));
-  });
-}
+app.use(express.static(path.join(__dirname, "client/build")));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname + "/client/build/index.html"));
+});
 
 const connection = mongoose.connection; //check connection, once there is log it
 connection
