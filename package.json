@@ -15,5 +15,6 @@
   "bugs": {
     "url": "https://github.com/yovelovadia/NoteBook/issues"
   },
-  "homepage": "https://github.com/yovelovadia/NoteBook#readme"
+  "homepage": "https://github.com/yovelovadia/NoteBook#readme",
+  "dependencies": {}
 }

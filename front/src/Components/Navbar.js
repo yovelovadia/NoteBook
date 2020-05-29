@@ -48,7 +48,7 @@ function Navbar(props) {
             <a
               style={{ color: props.font_color, left: "6vw" }}
               className={"links_href"}
-              // href={"/schedule"}
+              href={"/#"}
             >
               inProgress
             </a>
@@ -57,7 +57,7 @@ function Navbar(props) {
             <a
               style={{ color: props.font_color, left: "9vw" }}
               className={"links_href"}
-              // href={"/schedule"}
+              href={"/#"}
             >
               inProgress
             </a>
