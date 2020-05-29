@@ -11,6 +11,7 @@ const port = process.env.PORT || 5000; //working port
 
 app.use(cors());
 app.use(express.json()); //returns in json
+app.use(express.static(path.resolve(__dirname, "build")));
 
 const uri = process.env.ATLAS_URI; //.env file meaning it is secret shhhh...
 
