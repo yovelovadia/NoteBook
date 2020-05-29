@@ -18,5 +18,13 @@
     "url": "https://github.com/yovelovadia/NoteBook/issues"
   },
   "homepage": "https://github.com/yovelovadia/NoteBook#readme",
-  "dependencies": {}
+  "dependencies": {
+    "@hapi/joi": "^17.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.14",
+    "nodemon": "^2.0.4"
+  }
 }
