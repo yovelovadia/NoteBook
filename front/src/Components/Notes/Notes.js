@@ -11,9 +11,12 @@ function Notes() {
 
   useEffect(() => {
     async function getNotes() {
-      const data = await axios.get("http://localhost:5000/notes/get-notes", {
-        params: { userId },
-      });
+      const data = await axios.get(
+        "http://localhost:5000/api/notes/get-notes",
+        {
+          params: { userId },
+        }
+      );
       setNotes(data.data);
     }
     getNotes();
@@ -22,9 +25,12 @@ function Notes() {
   useEffect(() => {
     async function getNotes() {
       if (!userId) {
-        const data = await axios.get("http://localhost:5000/notes/get-notes", {
-          params: { userId: "globalID" },
-        });
+        const data = await axios.get(
+          "http://localhost:5000/api/notes/get-notes",
+          {
+            params: { userId: "globalID" },
+          }
+        );
         setNotes(data.data);
       }
     }
@@ -39,11 +45,11 @@ function Notes() {
     };
 
     await axios
-      .delete("http://localhost:5000/notes/delete-notes")
+      .delete("http://localhost:5000/api/notes/delete-notes")
       .catch((err) => console.log(err));
 
     axios
-      .post("http://localhost:5000/notes/add-note", { params: data })
+      .post("http://localhost:5000/api/notes/add-note", { params: data })
       .then((res) => setRefresh(refresh + 1));
   }
   return (

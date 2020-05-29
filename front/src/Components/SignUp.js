@@ -25,7 +25,7 @@ function SignUp() {
     event.preventDefault();
     const user = { name, email, password };
     try {
-      await axios.post("http://localhost:5000/users/add", user);
+      await axios.post("http://localhost:5000/api/users/add", user);
       await setResponse("User Created");
       setTimeout(() => {
         history.push("/log-in");

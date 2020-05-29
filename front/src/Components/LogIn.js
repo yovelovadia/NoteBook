@@ -21,9 +21,12 @@ function LogIn() {
   async function validate(event) {
     event.preventDefault();
     try {
-      const data = await axios.get("http://localhost:5000/users/validation", {
-        params: { email, password },
-      });
+      const data = await axios.get(
+        "http://localhost:5000/api/users/validation",
+        {
+          params: { email, password },
+        }
+      );
       setResponse("logged in");
       const token = data.data.token;
       localStorage.setItem("jwtAuthToken", token);

@@ -17,7 +17,7 @@ function NoteComp(props) {
     };
 
     axios
-      .put(`http://localhost:5000/notes/update`, data)
+      .put(`http://localhost:5000/api/notes/update`, data)
       .catch((err) => console.log(err));
   }
 

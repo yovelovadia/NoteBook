@@ -1,6 +1,7 @@
 const express = require("express"); // helps backend routing
 const mongoose = require("mongoose"); // helps connecting to mongodb
 const cors = require("cors");
+const path = require("path");
 
 require("dotenv").config();
 
@@ -11,7 +12,6 @@ const port = process.env.PORT || 5000; //working port
 
 app.use(cors());
 app.use(express.json()); //returns in json
-app.use(express.static(path.resolve(__dirname, "build")));
 
 const uri = process.env.ATLAS_URI; //.env file meaning it is secret shhhh...
 
@@ -25,15 +25,24 @@ mongoose.connect(uri, {
 //use the routes given to send to db
 
 const users = require("./routes/users");
-app.use("/users", users);
+app.use("/api/users", users);
 
 const schedule = require("./routes/schedule");
-app.use("/schedule", schedule);
+app.use("/api/schedule", schedule);
 
 const notes = require("./routes/notes");
-app.use("/notes", notes);
+app.use("/api/notes", notes);
 
 ////////////////////////////////////////////////
+//serve static assets if in production
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("front/build"));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "front", "build", "index.html"));
+  });
+}
 
 const connection = mongoose.connection; //check connection, once there is log it
 connection
