@@ -38,7 +38,7 @@ app.use("/api/notes", notes);
 
 app.use(express.static(path.join(__dirname, "../client/build")));
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname + "/client/build/index.html"));
+  res.sendFile(path.join(__dirname + "../client/build/index.html"));
 });
 
 const connection = mongoose.connection; //check connection, once there is log it
