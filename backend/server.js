@@ -8,14 +8,14 @@ require("dotenv").config();
 mongoose.set("useFindAndModify", false);
 
 const app = express(); //set up
-const port = process.env.MONGOLAB_URI || 5000; //working port
+const port = process.env.PORT || 5000; //working port
 
 app.use(cors());
 app.use(express.json()); //returns in json
 
 const uri = process.env.ATLAS_URI; //.env file meaning it is secret shhhh...
 
-mongoose.connect(uri, {
+mongoose.connect(procces.env.MONGOLAB_URI || uri, {
   // connecting... always fill those prevent errors
   useNewUrlParser: true,
   useCreateIndex: true,
