@@ -8,6 +8,7 @@ body {
   overflow: hidden;
   font-family: monospace;
   position: relative;
+  width: 100%;
 }
 
 .background_images {
