@@ -87,6 +87,10 @@ router.route("/validation").get(async (req, res) => {
   }
 });
 
+router.route("/test").get((req, res) => {
+  user.find().then((data) => res.json(data));
+});
+
 //getting a name only
 router.route("/:id").get((req, res) => {
   user
