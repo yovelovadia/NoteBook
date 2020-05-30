@@ -7,8 +7,6 @@ body {
   width: 100vw;
   overflow: hidden;
   font-family: monospace;
-  position: relative;
-  width: 100%;
 }
 
 .background_images {
@@ -16,6 +14,9 @@ body {
   background-size: cover;
   height: 100vh;
   width: 100vw;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
 }
 .home {
   background-image: url("./images/home_background.jpg");
