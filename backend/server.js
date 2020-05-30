@@ -15,7 +15,7 @@ app.use(express.json()); //returns in json
 
 const uri = process.env.ATLAS_URI; //.env file meaning it is secret shhhh...
 
-mongoose.connect(procces.env.MONGOLAB_URI || uri, {
+mongoose.connect(process.env.MONGOLAB_URI, uri, {
   // connecting... always fill those prevent errors
   useNewUrlParser: true,
   useCreateIndex: true,
