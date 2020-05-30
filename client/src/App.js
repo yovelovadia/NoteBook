@@ -1,5 +1,5 @@
 import React from "react";
-import { Router, Switch, Route, HashRouter } from "react-router-dom";
+import { Router, Switch, Route } from "react-router-dom";
 import { createBrowserHistory } from "history";
 import Home from "./Components/Home";
 import SignUp from "./Components/SignUp";
@@ -10,7 +10,7 @@ import Notes from "./Components/Notes/Notes";
 function App() {
   const history = createBrowserHistory();
   return (
-    <HashRouter history={history}>
+    <Router history={history}>
       <React.Fragment>
         <Switch>
           <Route path="/" exact component={Home} />
@@ -22,7 +22,7 @@ function App() {
           <Home />
         </Switch>
       </React.Fragment>
-    </HashRouter>
+    </Router>
   );
 }
 
