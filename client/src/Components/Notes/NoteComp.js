@@ -16,9 +16,7 @@ function NoteComp(props) {
       _id: props.note._id,
     };
 
-    axios
-      .put(`http://localhost:5000/api/notes/update`, data)
-      .catch((err) => console.log(err));
+    axios.put(`/api/notes/update`, data).catch((err) => console.log(err));
   }
 
   return (

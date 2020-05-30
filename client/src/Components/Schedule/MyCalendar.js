@@ -19,12 +19,9 @@ function MyCalendar() {
     // happens at start and refresh... load from DB and set up
     const empty_array = [];
     async function getData() {
-      const data = await axios.get(
-        "http://localhost:5000/api/schedule/getDates",
-        {
-          params: { Logged },
-        }
-      );
+      const data = await axios.get("/api/schedule/getDates", {
+        params: { Logged },
+      });
       data.data.map((date) => {
         empty_array.push({
           title: date.date.title,
@@ -60,7 +57,7 @@ function MyCalendar() {
         },
       };
       axios
-        .post("http://localhost:5000/api/schedule/add", { params: data })
+        .post("/api/schedule/add", { params: data })
         .then((res) => setRefresh(refresh + 1))
         .catch((e) => console.log(e.response));
     }
@@ -78,7 +75,7 @@ function MyCalendar() {
       },
     };
     axios
-      .put("http://localhost:5000/api/schedule/change-position", data)
+      .put("/api/schedule/change-position", data)
       .catch((e) => console.log(e));
   };
 
@@ -93,16 +90,14 @@ function MyCalendar() {
         allDay: info.event.allDay,
       },
     };
-    axios
-      .put("http://localhost:5000/api/schedule/change-resize", data)
-      .catch((e) => console.log(e));
+    axios.put("/api/schedule/change-resize", data).catch((e) => console.log(e));
   };
 
   function handleEventDelete(info) {
     if (window.confirm("Delete event?")) {
       const id = info.event.id;
       axios
-        .delete(`http://localhost:5000/api/schedule/${id}`)
+        .delete(`/api/schedule/${id}`)
         .then((res) => setRefresh(refresh + 1))
         .catch((err) => console.log(err));
     }

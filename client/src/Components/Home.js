@@ -11,7 +11,7 @@ function Home() {
   useEffect(() => {
     async function fetchName() {
       if (id) {
-        const data = await axios.get(`http://localhost:5000/api/users/${id}`);
+        const data = await axios.get(`/api/users/${id}`);
         await setName(data.data);
       }
     }

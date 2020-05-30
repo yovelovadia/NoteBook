@@ -10,7 +10,7 @@ function checkJwtExp() {
 
   const token = `bearer ${localStorage.getItem("jwtAuthToken")}`;
   axios
-    .get("http://localhost:5000/api/users/check-jwt-exp", {
+    .get("/api/users/check-jwt-exp", {
       params: { token },
     })
     .then((res) => {
